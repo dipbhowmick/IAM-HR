@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_1125478_iam_hr.PowershellProbe</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <mobile_callable>false</mobile_callable>
+        <name>PowershellProbe</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[var PowershellProbe = Class.create();
+PowershellProbe.prototype = {
+    initialize: function(eccAgentSysId) {
+		this.agent = '';
+		this.source = '';
+		this.payload = '';
+		this.isMidServerUp = false;
+		this.parameters = {
+			"probe_name": "Windows - Powershell",
+			"skip_sensor": "true",
+			// "used_by_runbook": "true",
+			// "glide.xmlhelper.trim.enable": "true"
+		};
+
+		if(eccAgentSysId){
+			this._setMidServer(eccAgentSysId);
+		}
+    },
+
+	_setMidServer: function(sysId){
+		var grEccAgent = new GlideRecord('ecc_agent');
+		if (grEccAgent.get(sysId)) {
+			this.agent = grEccAgent.name;
+			this.source = grEccAgent.ip_address;
+			this.isMidServerUp = (grEccAgent.status.toLowerCase() == "up");
+		}
+	},
+
+	_execute: function(payload){
+		var grEccQueue = new GlideRecord("ecc_queue");
+		grEccQueue.initialize();
+		grEccQueue.agent = "mid.server." + this.agent;
+		grEccQueue.topic = "Powershell";
+		grEccQueue.name = "Windows - Powershell";
+		grEccQueue.source = this.source;
+		grEccQueue.queue = "output";
+		grEccQueue.state = "ready";
+		grEccQueue.payload = payload;
+		this.eccQueue = grEccQueue.insert();
+	},
+
+	_getFilePath: function(sysId) {
+		var grFile = new GlideRecord('ecc_agent_script_file');
+		if (grFile.get(sysId)) {
+			var path = grFile.name;
+			while (!gs.nil(grFile.parent)) {
+				path = grFile.parent.name + '\\' + path;
+				grFile = grFile.parent;
+			}
+			return "scripts\\" + path;
+		}
+		return "";
+	},
+
+	_getPayload(parameters){
+		var payload = '<?xml version="1.0" encoding="UTF-8"?><parameters>';
+		for (var key in parameters) {
+			var value = parameters[key];
+			payload += '<parameter name="' + key + '" value="' + value + '"/>';
+		}
+		payload += '</parameters>';
+		return payload;
+	},
+
+	executeScript: function(scriptSysId, parameters, eccAgentSysId) {
+		if(eccAgentSysId) this._setMidServer(eccAgentSysId);
+		if(!this.agent) throw "MidServer not found!";
+		if(!this.isMidServerUp) throw "MidServer is Down!";
+		var filePath = this._getFilePath(scriptSysId);
+		if(!filePath) throw "Script not found!";
+		this.parameters = Object.assign({"MIDScriptFile": filePath}, this.parameters);
+		if(parameters) this.parameters = Object.assign(this.parameters, parameters);
+		var payload = this._getPayload(this.parameters);
+		this._execute(payload);
+	},
+
+    type: 'PowershellProbe'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-04-18 14:34:12</sys_created_on>
+        <sys_id>5d835aec83c522106b8fa750ceaad3c4</sys_id>
+        <sys_mod_count>7</sys_mod_count>
+        <sys_name>PowershellProbe</sys_name>
+        <sys_package display_value="IAM HR" source="x_1125478_iam_hr">202e89ac838122106b8fa750ceaad3ea</sys_package>
+        <sys_policy>protected</sys_policy>
+        <sys_scope display_value="IAM HR">202e89ac838122106b8fa750ceaad3ea</sys_scope>
+        <sys_update_name>sys_script_include_5d835aec83c522106b8fa750ceaad3c4</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-04-18 20:09:04</sys_updated_on>
+    </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>5d835aec83c522106b8fa750ceaad3c4</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-04-18 14:34:11</sys_created_on>
+        <sys_id>d2ac5a2c83c122106b8fa750ceaad3df</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-04-18 14:34:11</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>

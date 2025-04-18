@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_fix">
+    <sys_script_fix action="INSERT_OR_UPDATE">
+        <before>false</before>
+        <description/>
+        <name>ScriptInclude Test</name>
+        <record_for_rollback>true</record_for_rollback>
+        <script><![CDATA[new x_1125478_iam_hr.PowershellProbe('ce8ba78e832022106b8fa750ceaad324') // MID Server1
+					.executeScript('9135a3a4834d22106b8fa750ceaad36d', { // ADObjectCreate.ps1
+						"powershell_param_searchRoot" : "LDAP://SR001.airforce.com:389/OU=Managed Users,DC=airforce,DC=com",
+						"powershell_param_CN": "Holi Moli",
+						"powershell_param_objectClass": "User",
+						"powershell_param_password_SV": "Password@123",
+						"powershell_param_REQ_ATTR_SamAccountName": "HOLMOL00",
+						"powershell_param_AD_CFG_Username_SV": "WORK\\S-MID-USER",
+						"powershell_param_AD_CFG_Password_SV": "School@123",
+						"powershell_param_AD_CFG_AuthenticationType": 129,
+						"powershell_param_ATTR_Mail": "abc@xyz.com",
+						"powershell_param_UAC_NORMAL_ACCOUNT": 1
+					});
+]]></script>
+        <sys_class_name>sys_script_fix</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-04-18 20:14:38</sys_created_on>
+        <sys_id>097aef24838d22106b8fa750ceaad317</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>ScriptInclude Test</sys_name>
+        <sys_package display_value="IAM HR" source="x_1125478_iam_hr">202e89ac838122106b8fa750ceaad3ea</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="IAM HR">202e89ac838122106b8fa750ceaad3ea</sys_scope>
+        <sys_update_name>sys_script_fix_097aef24838d22106b8fa750ceaad317</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-04-18 20:14:38</sys_updated_on>
+        <unloadable>false</unloadable>
+    </sys_script_fix>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>097aef24838d22106b8fa750ceaad317</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-04-18 20:14:38</sys_created_on>
+        <sys_id>0d9aa7a0838d22106b8fa750ceaad306</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-04-18 20:14:38</sys_updated_on>
+        <table>sys_script_fix</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>

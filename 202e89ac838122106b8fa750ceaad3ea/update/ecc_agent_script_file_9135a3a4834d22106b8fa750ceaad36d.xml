@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="ecc_agent_script_file">
+    <ecc_agent_script_file action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <checksum/>
+        <description/>
+        <directory>false</directory>
+        <name>ADObjectCreate.ps1</name>
+        <parent display_value="IAMHR">60d4ab6c834d22106b8fa750ceaad355</parent>
+        <script># $searchRoot&#13;
+# $CN&#13;
+# $objectClass&#13;
+# $password_SV&#13;
+# $REQ_ATTR_&#13;
+# $AD_CFG_Username_SV&#13;
+# $AD_CFG_Password_SV&#13;
+# $AD_CFG_AuthenticationType&#13;
+# $ATTR_&#13;
+# $UAC_&#13;
+&#13;
+$UAC_FLAGS = @{&#13;
+    SCRIPT = 0x1&#13;
+    ACCOUNTDISABLE = 0x2&#13;
+    HOMEDIR_REQUIRED = 0x8&#13;
+    LOCKOUT = 0x10&#13;
+    PASSWD_NOTREQD = 0x20&#13;
+    PASSWD_CANT_CHANGE = 0x40&#13;
+    ENCRYPTED_TEXT_PWD_ALLOWED = 0x80&#13;
+    TEMP_DUPLICATE_ACCOUNT = 0x100&#13;
+    NORMAL_ACCOUNT = 0x200&#13;
+    INTERDOMAIN_TRUST_ACCOUNT = 0x800&#13;
+    WORKSTATION_TRUST_ACCOUNT = 0x1000&#13;
+    SERVER_TRUST_ACCOUNT = 0x2000&#13;
+    DONT_EXPIRE_PASSWORD = 0x10000&#13;
+    MNS_LOGON_ACCOUNT = 0x20000&#13;
+    SMARTCARD_REQUIRED = 0x40000&#13;
+    TRUSTED_FOR_DELEGATION = 0x80000&#13;
+    NOT_DELEGATED = 0x100000&#13;
+    USE_DES_KEY_ONLY = 0x200000&#13;
+    DONT_REQ_PREAUTH = 0x400000&#13;
+    PASSWORD_EXPIRED = 0x800000&#13;
+    TRUSTED_TO_AUTH_FOR_DELEGATION = 0x1000000&#13;
+    PARTIAL_SECRETS_ACCOUNT = 0x4000000&#13;
+}&#13;
+&#13;
+if (-not $ATTR_UserAccountControl) {&#13;
+    $uac = 0&#13;
+    $varList = @(Get-Variable -Name "UAC_*")&#13;
+    foreach ($var in $varList) {&#13;
+        if ($var.Value -notin @('', '0', 'false')) {&#13;
+            $flag = $UAC_FLAGS[$var.Name.Replace('UAC_', '')]&#13;
+            if ($flag) {&#13;
+                $uac = $uac -bor $flag&#13;
+                Write-Output "UserAccountControl flag $($var.Name) is set"&#13;
+            }&#13;
+        }&#13;
+    }&#13;
+    $ATTR_UserAccountControl = $uac&#13;
+    Write-Output "UserAccountControl = 0x$($uac.ToString('X'))"&#13;
+}&#13;
+&#13;
+$cmdArgs = @(&#13;
+    $searchRoot&#13;
+)&#13;
+&#13;
+if ($AD_CFG_Username_SV -and $AD_CFG_Password_SV) {&#13;
+    $cmdArgs += @(&#13;
+        $AD_CFG_Username_SV&#13;
+        $AD_CFG_Password_SV&#13;
+        $AD_CFG_AuthenticationType&#13;
+    )&#13;
+}&#13;
+&#13;
+$dirEntry = New-Object -TypeName System.DirectoryServices.DirectoryEntry -ArgumentList $cmdArgs&#13;
+&#13;
+try {&#13;
+    $null = $dirEntry.RefreshCache()&#13;
+    Write-Output "$searchRoot found."&#13;
+}&#13;
+catch {&#13;
+    Write-Output $_&#13;
+    exit 1&#13;
+}&#13;
+&#13;
+$escapedCharacters = @(&#13;
+    @{'\\' = '\\'}&#13;
+    @{'#' = '\#'}&#13;
+    @{',' = '\,'}&#13;
+    @{'"' = '\"'}&#13;
+    @{'&amp;lt;' = '\&amp;lt;'}&#13;
+    @{'&amp;gt;' = '\&amp;gt;'}&#13;
+    @{';' = '\;'}&#13;
+    @{'\+' = '\+'}&#13;
+    @{'\=' = '\='}&#13;
+    @{'^ ' = '\ '}&#13;
+    @{' $' = '\ '}&#13;
+)&#13;
+&#13;
+$escapedCN = $CN&#13;
+foreach ($ec in $escapedCharacters) {&#13;
+    $key = $ec.Keys[0]&#13;
+    $val = $ec.Values[0]&#13;
+    $escapedCN = $escapedCN -replace $key, $val&#13;
+}&#13;
+&#13;
+try {&#13;
+    $obj = $dirEntry.Create($objectClass, "CN=$escapedCN")&#13;
+&#13;
+    $attrVars = @(Get-Variable -Name 'REQ_ATTR_*')&#13;
+    foreach ($attrVar in $attrVars) {&#13;
+        $varName = $attrVar.Name.Replace('REQ_ATTR_', '')&#13;
+        $varValue = $attrVar.Value&#13;
+        $obj.InvokeSet($varName, $varValue)&#13;
+        Write-Output "Set required attribute $varName to $varValue" &#13;
+    }&#13;
+&#13;
+    $obj.CommitChanges()&#13;
+    Write-Output "$objectClass created, Name = $CN, ObjectClass = $objectClass, searchRoot = $searchRoot"&#13;
+}&#13;
+catch {&#13;
+    Write-Output $_&#13;
+    exit 1&#13;
+}&#13;
+&#13;
+$password = $password_SV&#13;
+&#13;
+try {&#13;
+    $null = $obj.SetPassword($password)&#13;
+    $obj.CommitChanges()&#13;
+    Write-Output "Password is set."&#13;
+}&#13;
+catch {&#13;
+    Write-Output "Failed to set user password: $_"&#13;
+    $obj.RefreshCache()&#13;
+}&#13;
+&#13;
+$attrVars = @(Get-Variable -Name 'ATTR_*')&#13;
+foreach ($attrVar in $attrVars) {&#13;
+    $varName = $attrVar.Name.Replace('ATTR_', '')&#13;
+    $varValue = $attrVar.Value&#13;
+    try {&#13;
+        if ($varValue -eq '') {&#13;
+            $obj.Properties[$varName].Clear()&#13;
+        }&#13;
+        else {&#13;
+            if ($varValue -match '^\[.*\]$') {&#13;
+                try {&#13;
+                    $varValue = ConvertFrom-Json $varValue&#13;
+                }&#13;
+                catch {&#13;
+                    $msg = $_.Exception.Message&#13;
+                    Write-Output "Failed to convert attribute to array, $varName, will keep as string, failure message is: $msg"&#13;
+                } &#13;
+            }&#13;
+            $obj.Properties[$varName].Value = $varValue&#13;
+        }&#13;
+    &#13;
+        $obj.CommitChanges()&#13;
+        Write-Output "Set attribute $varName to $varValue" &#13;
+    }&#13;
+    catch {&#13;
+        $msg = $_.Exception.Message&#13;
+        Write-Output "Failed to set attribute, $varName, failure message is: $msg"&#13;
+        $obj.RefreshCache()&#13;
+    }&#13;
+}&#13;
+&#13;
+$obj</script>
+        <script_attachment/>
+        <source/>
+        <sys_class_name>ecc_agent_script_file</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-04-18 19:53:39</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>9135a3a4834d22106b8fa750ceaad36d</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>ADObjectCreate.ps1</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="IAM HR" source="x_1125478_iam_hr">202e89ac838122106b8fa750ceaad3ea</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="IAM HR">202e89ac838122106b8fa750ceaad3ea</sys_scope>
+        <sys_update_name>ecc_agent_script_file_9135a3a4834d22106b8fa750ceaad36d</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-04-18 19:54:01</sys_updated_on>
+        <use_attachment>false</use_attachment>
+        <version/>
+    </ecc_agent_script_file>
+</record_update>
