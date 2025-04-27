@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="309a7b93834122106b8fa750ceaad3c4" extends="x_1125478_iam_hr_object" label="Profile" max_length="40" name="x_1125478_iam_hr_profile" type="collection"/>
+</database>

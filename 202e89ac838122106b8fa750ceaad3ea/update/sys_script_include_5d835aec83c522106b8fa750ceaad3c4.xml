@@ -83,6 +83,45 @@ PowershellProbe.prototype = {
 		if(parameters) this.parameters = Object.assign(this.parameters, parameters);
 		var payload = this._getPayload(this.parameters);
 		this._execute(payload);
+		return this.eccQueue;
+	},
+
+	getResponse: function (eccQueueSysId, timeOut) {
+		var maxtime = gs.getProperty(
+			'com.snc.integration.powershellprobe.maxWaitTimeForEccQueue',
+			(timeOut ? timeOut : 60)
+		);
+
+		var counter = 0;
+		var found = false;
+		var grEccResponse = new GlideRecord('ecc_queue');
+		grEccResponse.addQuery('queue', 'input');
+		grEccResponse.addQuery('response_to', eccQueueSysId ? eccQueueSysId : this.eccQueue);
+
+		while (counter < maxtime && found == false) {
+			grEccResponse.query();
+			found = grEccResponse.next();
+			var ms = new Date().getTime() + 1000;
+			while(new Date().getTime() < ms ) { continue; }
+			counter++;
+		}
+
+		if(!found){
+			return {"error": "[TimeOut] Response not found!"};
+		}
+
+		var payload = grEccResponse.payload;
+		if (grEccResponse.payload == '<see_attachment/>') {
+			payload = new Packages.com.glide.ui.SysAttachment().get(grEccResponse, 'payload');
+		}
+		
+		var xmldoc = new XMLDocument2();
+		xmldoc.parseXML(payload);
+		
+		return {
+			"output": xmldoc.getNodeText('//results/result/output'),
+			"error": xmldoc.getNodeText('//results/result/error')
+		};
 	},
 
     type: 'PowershellProbe'
@@ -91,14 +130,14 @@ PowershellProbe.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2025-04-18 14:34:12</sys_created_on>
         <sys_id>5d835aec83c522106b8fa750ceaad3c4</sys_id>
-        <sys_mod_count>7</sys_mod_count>
+        <sys_mod_count>12</sys_mod_count>
         <sys_name>PowershellProbe</sys_name>
         <sys_package display_value="IAM HR" source="x_1125478_iam_hr">202e89ac838122106b8fa750ceaad3ea</sys_package>
         <sys_policy>protected</sys_policy>
         <sys_scope display_value="IAM HR">202e89ac838122106b8fa750ceaad3ea</sys_scope>
         <sys_update_name>sys_script_include_5d835aec83c522106b8fa750ceaad3c4</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2025-04-18 20:09:04</sys_updated_on>
+        <sys_updated_on>2025-04-19 13:08:46</sys_updated_on>
     </sys_script_include>
     <sys_es_latest_script action="INSERT_OR_UPDATE">
         <id>5d835aec83c522106b8fa750ceaad3c4</id>

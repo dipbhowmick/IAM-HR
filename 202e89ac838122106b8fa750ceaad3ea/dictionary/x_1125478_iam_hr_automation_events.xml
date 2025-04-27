@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="0050f397830122106b8fa750ceaad36b" label="Automation Events" max_length="40" name="x_1125478_iam_hr_automation_events" type="collection">
+        <element attributes="ignore_filter_on_new=true" default="javascript:global.getNextObjNumberPadded();" label="Number" max_length="40" name="number" type="string"/>
+        <element label="Parent" max_length="32" name="parent" read_only="true" reference="x_1125478_iam_hr_automation_events" type="reference"/>
+        <element choice="3" label="Request Type" mandatory="true" max_length="40" name="request_type" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Profile Update" sequence="20" value="Profile Update"/>
+                <element inactive_on_update="false" label="Account Update" sequence="80" value="Account Update"/>
+                <element inactive_on_update="false" label="Account Create" sequence="70" value="Account Create"/>
+                <element inactive_on_update="false" label="Account Enable" sequence="90" value="Account Enable"/>
+                <element inactive_on_update="false" label="Account Import" sequence="0" value="Account Import"/>
+                <element inactive_on_update="false" label="Profile Transfer" sequence="60" value="Profile Transfer"/>
+                <element inactive_on_update="false" label="Profile Delete" sequence="50" value="Profile Delete"/>
+                <element inactive_on_update="false" label="Account Delete" sequence="110" value="Account Delete"/>
+                <element inactive_on_update="false" label="Account Disable" sequence="100" value="Account Disable"/>
+                <element inactive_on_update="false" label="Entitlement Import" sequence="1" value="Entitlement Import"/>
+                <element inactive_on_update="false" label="Profile Create" sequence="10" value="Profile Create"/>
+                <element inactive_on_update="false" label="Entitlement Remove" sequence="130" value="Entitlement Remove"/>
+                <element inactive_on_update="false" label="Entitlement Add" sequence="120" value="Entitlement Add"/>
+                <element inactive_on_update="false" label="Profile Enable" sequence="30" value="Profile Enable"/>
+                <element inactive_on_update="false" label="Profile Disable" sequence="40" value="Profile Disable"/>
+            </choice>
+        </element>
+        <index name="index">
+            <element name="parent"/>
+        </index>
+    </element>
+</database>

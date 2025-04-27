@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_app_application">
+    <sys_app_application action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <category display_value="Custom Applications">e0355b31ef303000a61d5a3615c0fb78</category>
+        <description/>
+        <device_type>browser</device_type>
+        <hint/>
+        <name>IAM HR</name>
+        <order>100</order>
+        <roles>x_1125478_iam_hr.automation_events_user</roles>
+        <sys_class_name>sys_app_application</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-04-27 09:44:44</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>f1b0bfd7830122106b8fa750ceaad3df</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>IAM HR</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="IAM HR" source="x_1125478_iam_hr">202e89ac838122106b8fa750ceaad3ea</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="IAM HR">202e89ac838122106b8fa750ceaad3ea</sys_scope>
+        <sys_update_name>sys_app_application_f1b0bfd7830122106b8fa750ceaad3df</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-04-27 09:44:44</sys_updated_on>
+        <title>IAM HR</title>
+        <view_name/>
+    </sys_app_application>
+</record_update>

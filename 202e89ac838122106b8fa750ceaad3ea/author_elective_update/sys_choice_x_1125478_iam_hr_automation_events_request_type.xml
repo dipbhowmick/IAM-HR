@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_choice action="INSERT_OR_UPDATE" field="request_type" table="x_1125478_iam_hr_automation_events" version="3">
+        <sys_choice_set action="INSERT_OR_UPDATE">
+            <element>request_type</element>
+            <name>x_1125478_iam_hr_automation_events</name>
+            <sys_class_name>sys_choice_set</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2025-04-27 09:52:29</sys_created_on>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>request_type</sys_name>
+            <sys_package display_value="IAM HR" source="x_1125478_iam_hr">202e89ac838122106b8fa750ceaad3ea</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="IAM HR">202e89ac838122106b8fa750ceaad3ea</sys_scope>
+            <sys_update_name>sys_choice_x_1125478_iam_hr_automation_events_request_type</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2025-04-27 09:52:29</sys_updated_on>
+        </sys_choice_set>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>request_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Account Import</label>
+            <language>en</language>
+            <name>x_1125478_iam_hr_automation_events</name>
+            <sequence>0</sequence>
+            <synonyms/>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2025-04-27 10:00:01</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2025-04-27 10:00:01</sys_updated_on>
+            <value>Account Import</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>request_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Entitlement Import</label>
+            <language>en</language>
+            <name>x_1125478_iam_hr_automation_events</name>
+            <sequence>1</sequence>
+            <synonyms/>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2025-04-27 10:00:34</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2025-04-27 10:00:34</sys_updated_on>
+            <value>Entitlement Import</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>request_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Profile Create</label>
+            <language>en</language>
+            <name>x_1125478_iam_hr_automation_events</name>
+            <sequence>10</sequence>
+            <synonyms/>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2025-04-27 09:52:29</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2025-04-27 09:52:29</sys_updated_on>
+            <value>Profile Create</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>request_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Profile Update</label>
+            <language>en</language>
+            <name>x_1125478_iam_hr_automation_events</name>
+            <sequence>20</sequence>
+            <synonyms/>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2025-04-27 09:52:52</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2025-04-27 09:52:52</sys_updated_on>
+            <value>Profile Update</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>request_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Profile Enable</label>
+            <language>en</language>
+            <name>x_1125478_iam_hr_automation_events</name>
+            <sequence>30</sequence>
+            <synonyms/>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2025-04-27 09:53:16</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2025-04-27 09:53:16</sys_updated_on>
+            <value>Profile Enable</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>request_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Profile Disable</label>
+            <language>en</language>
+            <name>x_1125478_iam_hr_automation_events</name>
+            <sequence>40</sequence>
+            <synonyms/>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2025-04-27 09:53:33</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2025-04-27 09:53:33</sys_updated_on>
+            <value>Profile Disable</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>request_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Profile Delete</label>
+            <language>en</language>
+            <name>x_1125478_iam_hr_automation_events</name>
+            <sequence>50</sequence>
+            <synonyms/>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2025-04-27 09:53:54</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2025-04-27 09:53:54</sys_updated_on>
+            <value>Profile Delete</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>request_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Profile Transfer</label>
+            <language>en</language>
+            <name>x_1125478_iam_hr_automation_events</name>
+            <sequence>60</sequence>
+            <synonyms/>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2025-04-27 09:54:17</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2025-04-27 09:54:17</sys_updated_on>
+            <value>Profile Transfer</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>request_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Account Create</label>
+            <language>en</language>
+            <name>x_1125478_iam_hr_automation_events</name>
+            <sequence>70</sequence>
+            <synonyms/>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2025-04-27 09:54:48</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2025-04-27 09:54:48</sys_updated_on>
+            <value>Account Create</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>request_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Account Update</label>
+            <language>en</language>
+            <name>x_1125478_iam_hr_automation_events</name>
+            <sequence>80</sequence>
+            <synonyms/>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2025-04-27 09:55:09</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2025-04-27 09:55:09</sys_updated_on>
+            <value>Account Update</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>request_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Account Enable</label>
+            <language>en</language>
+            <name>x_1125478_iam_hr_automation_events</name>
+            <sequence>90</sequence>
+            <synonyms/>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2025-04-27 09:55:26</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2025-04-27 09:55:26</sys_updated_on>
+            <value>Account Enable</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>request_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Account Disable</label>
+            <language>en</language>
+            <name>x_1125478_iam_hr_automation_events</name>
+            <sequence>100</sequence>
+            <synonyms/>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2025-04-27 09:55:43</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2025-04-27 09:55:43</sys_updated_on>
+            <value>Account Disable</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>request_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Account Delete</label>
+            <language>en</language>
+            <name>x_1125478_iam_hr_automation_events</name>
+            <sequence>110</sequence>
+            <synonyms/>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2025-04-27 09:56:02</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2025-04-27 09:56:02</sys_updated_on>
+            <value>Account Delete</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>request_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Entitlement Add</label>
+            <language>en</language>
+            <name>x_1125478_iam_hr_automation_events</name>
+            <sequence>120</sequence>
+            <synonyms/>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2025-04-27 09:59:07</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2025-04-27 09:59:07</sys_updated_on>
+            <value>Entitlement Add</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>request_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Entitlement Remove</label>
+            <language>en</language>
+            <name>x_1125478_iam_hr_automation_events</name>
+            <sequence>130</sequence>
+            <synonyms/>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2025-04-27 09:59:19</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2025-04-27 09:59:19</sys_updated_on>
+            <value>Entitlement Remove</value>
+        </sys_choice>
+    </sys_choice>
+</record_update>
